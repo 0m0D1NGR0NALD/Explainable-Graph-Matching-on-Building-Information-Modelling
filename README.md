@@ -117,7 +117,7 @@ Explanation Options:
    --checkpoint_dir: Directory containing model checkpoints
    --output_dir: Directory to explanation outputs
    --num_samples: Number of samples to analyze
-   --epochs: Number of epochs in GNNExplainer
+   --epochs: Number of epochs - GNNExplainer
    --explain_wrong: Explain misclassified nodes
    --explain_correct: Explain correctly classified nodes
    --visualize: Generate visualization plots
