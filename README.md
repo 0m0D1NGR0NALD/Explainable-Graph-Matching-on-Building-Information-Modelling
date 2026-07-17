@@ -3,6 +3,10 @@
 ## Project Topic
 Experiments with Graph Neural Networks in the Construction Industry (Building Information Modelling)
 
+## Project Supervisors
+- Professor Marco Cococcioni
+- Matteo Giorgi
+
 ## Group Members
 - Reza Almassi  
 - Ronald Omoding  
@@ -26,6 +30,8 @@ We evaluate multiple GNN architectures, compare their performance on a preproces
     - **GraphSAGE** (Hamilton et al., 2017)  
     - **GIN** (Xu et al., 2019)  
     - **Graph Transformer** (Shi et al., 2020)
-- Evaluate performance on the MSD dataset  
-- Apply GNNExplainer to interpret predictions  
-- Diagnose incorrect matches and model weaknesses  
+    - **GINE** (Hu et al., 2020)
+    - **RGCN** (Schlichtkrull et al et al., 2017)
+- Evaluate performance on pre=processed version of the MSD dataset  
+- Apply GNNExplainer to interprete predictions  
+- Diagnose incorrect matches and highlight model weaknesses  
