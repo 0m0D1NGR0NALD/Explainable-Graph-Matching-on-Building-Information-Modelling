@@ -30,7 +30,7 @@ We evaluate multiple GNN architectures, compare their performance on a preproces
     - **Graph Transformer** (Shi et al., 2020)
     - **GINE** (Hu et al., 2020)
     - **RGCN** (Schlichtkrull et al et al., 2017)
-- Evaluate performance on pre=processed version of the MSD dataset  
+- Evaluate performance on preprocessed version of the MSD dataset  
 - Apply GNNExplainer to interprete predictions  
 - Diagnose incorrect matches and highlight model weaknesses  
 
