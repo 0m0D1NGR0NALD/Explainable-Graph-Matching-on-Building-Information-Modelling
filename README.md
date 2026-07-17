@@ -12,8 +12,6 @@ Experiments with Graph Neural Networks in the Construction Industry (Building In
 - Ronald Omoding  
 - Tewodros Abere Muche  
 
----
-
 ## Project Description
 
 This project aims to improve the performance and interpretability of a graph‑matching model for hierarchical scene graphs (rooms + wall surfaces).  
@@ -71,11 +69,11 @@ Each sample is a tuple (Data1, Data2, PermutationMatrix):
 
 ## Training
 ```bash
-python train.py --model gatv2 --data_path /path/to/msd_data --checkpoint_dir ./checkpoints
+python train.py --model gatv2 --data_path /msd_data --checkpoint_dir ./checkpoints
 ```
 ## Evaluation
 ```bash
-python evaluate.py --model gatv2 --data_path /path/to/msd_data --checkpoint_dir ./checkpoints --visualize
+python evaluate.py --model gatv2 --data_path /msd_data --checkpoint_dir ./checkpoints --visualize
 ```
 
 ## Model Explainability
@@ -98,7 +96,7 @@ The repository includes comprehensive explainability features:
 ```bash
 python scripts/explain_model.py \
     --model gine \
-    --data_path /path/to/msd_data \
+    --data_path /msd_data \
     --checkpoint_dir ./checkpoints \
     --output_dir ./explanations \
     --num_samples 5 \
