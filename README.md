@@ -35,3 +35,12 @@ We evaluate multiple GNN architectures, compare their performance on a preproces
 - Evaluate performance on pre=processed version of the MSD dataset  
 - Apply GNNExplainer to interprete predictions  
 - Diagnose incorrect matches and highlight model weaknesses  
+
+## Training
+```bash
+python train.py --model gatv2 --data_path /path/to/msd_data --checkpoint_dir ./checkpoints
+```
+## Evaluation
+```bash
+python evaluate.py --model gatv2 --data_path /path/to/msd_data --checkpoint_dir ./checkpoints --visualize
+```
