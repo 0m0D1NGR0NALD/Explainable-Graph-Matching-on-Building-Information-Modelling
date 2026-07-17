@@ -53,19 +53,25 @@ Each sample is a tuple (Data1, Data2, PermutationMatrix):
 ### Node Features
 7-dimensional feature vector per node:
 
-- Type_Room: [1, 0] for room nodes
+- **Type_Room**: [1, 0] for room nodes
 
-- Type_WS: [0, 1] for wall segment nodes
+- **Type_WS**: [0, 1] for wall segment nodes
 
-- Centroid_X: X coordinate
+- **Centroid_X**: X coordinate
 
-- Centroid_Y: Y coordinate
+- **Centroid_Y**: Y coordinate
 
-- Normal_X: Outward-facing normal X
+- **Normal_X**: Outward-facing normal X
 
-- Normal_Y: Outward-facing normal Y
+- **Normal_Y**: Outward-facing normal Y
 
-- Segment_Length: Wall segment length (-1 for rooms)
+- **Segment_Length**: Wall segment length (-1 for rooms)
+
+### Edge Features
+The graph contains three distinct edge types:
+- **Room-WS**: Connects room to wall segment
+- **Room-Room**: Connects two rooms
+- **WS-WS**: Connects two wall segments
 
 ## Training
 ```bash
@@ -105,12 +111,14 @@ python scripts/explain_model.py \
     --visualize
 ```
 Explanation Options:
-- --model: Model architecture to explain
-- --data_path: Path to the MSD dataset
-- --checkpoint_dir: Directory containing model checkpoints
-- --output_dir: Directory for explanation outputs
-- --num_samples: Number of samples to analyze
-- --epochs: Number of epochs for GNNExplainer
-- --explain_wrong: Explain misclassified nodes
-- --explain_correct: Explain correctly classified nodes
-- --visualize: Generate visualization plots
+```bash
+ --model: Model architecture to explain
+ --data_path: Path to the MSD dataset
+ --checkpoint_dir: Directory containing model checkpoints
+ --output_dir: Directory for explanation outputs
+ --num_samples: Number of samples to analyze
+ --epochs: Number of epochs for GNNExplainer
+ --explain_wrong: Explain misclassified nodes
+ --explain_correct: Explain correctly classified nodes
+ --visualize: Generate visualization plots
+```
