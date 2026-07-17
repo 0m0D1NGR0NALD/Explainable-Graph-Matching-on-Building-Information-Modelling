@@ -36,6 +36,39 @@ We evaluate multiple GNN architectures, compare their performance on a preproces
 - Apply GNNExplainer to interprete predictions  
 - Diagnose incorrect matches and highlight model weaknesses  
 
+## Dataset
+The dataset consists of paired graphs from:
+
+1. A-graphs (BIM): Building Information Models with room polygons and wall segments
+
+2. S-graphs (Robot): Robot perception data with semantic features
+
+### Dataset Format
+Each sample is a tuple (Data1, Data2, PermutationMatrix):
+
+- Data1: PyG Data object for A-graph (BIM)
+
+- Data2: PyG Data object for S-graph (Robot)
+
+- PermutationMatrix: Ground truth node correspondence (N_A × N_S)
+
+### Node Features
+7-dimensional feature vector per node:
+
+- Type_Room: [1, 0] for room nodes
+
+- Type_WS: [0, 1] for wall segment nodes
+
+- Centroid_X: X coordinate
+
+- Centroid_Y: Y coordinate
+
+- Normal_X: Outward-facing normal X
+
+- Normal_Y: Outward-facing normal Y
+
+- Segment_Length: Wall segment length (-1 for rooms)
+
 ## Training
 ```bash
 python train.py --model gatv2 --data_path /path/to/msd_data --checkpoint_dir ./checkpoints
@@ -44,3 +77,42 @@ python train.py --model gatv2 --data_path /path/to/msd_data --checkpoint_dir ./c
 ```bash
 python evaluate.py --model gatv2 --data_path /path/to/msd_data --checkpoint_dir ./checkpoints --visualize
 ```
+
+## Model Explainability
+The repository includes comprehensive explainability features:
+
+### GNNExplainer Integration
+- Node Importance: Identifies which nodes in the BIM graph are most influential for a prediction
+
+- Edge Importance: Identifies which graph edges are most important
+
+- Feature Importance: Shows which node features contribute to the decision
+
+### Visualization Types
+- Node Importance Plots: Color-coded nodes showing importance (red = high, blue = low)
+
+- Edge Importance Plots: Thick/thin edges indicating importance
+
+- Matching Visualization: Side-by-side graphs with matching lines
+
+```bash
+python scripts/explain_model.py \
+    --model gine \
+    --data_path /path/to/msd_data \
+    --checkpoint_dir ./checkpoints \
+    --output_dir ./explanations \
+    --num_samples 5 \
+    --explain_wrong \
+    --explain_correct \
+    --visualize
+```
+Explanation Options:
+- --model: Model architecture to explain
+- --data_path: Path to the MSD dataset
+- --checkpoint_dir: Directory containing model checkpoints
+- --output_dir: Directory for explanation outputs
+- --num_samples: Number of samples to analyze
+- --epochs: Number of epochs for GNNExplainer
+- --explain_wrong: Explain misclassified nodes
+- --explain_correct: Explain correctly classified nodes
+- --visualize: Generate visualization plots
