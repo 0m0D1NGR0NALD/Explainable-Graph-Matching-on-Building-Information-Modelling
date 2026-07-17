@@ -18,8 +18,8 @@ This project aims to improve the performance and interpretability of a graph‑m
 We evaluate multiple GNN architectures, compare their performance on a preprocessed MSD dataset, and apply explainability techniques to understand which nodes and edges contribute most to incorrect predictions.
 
 ### Inspired by:
-- Ndulue et al. (2026) — *Learning-Based Hierarchical Scene Graph Matching for Robot Localization Leveraging Prior Maps*  
-- Shaheer et al. (2023) — *Graph-based Global Robot Localization Informing Situational Graphs with Architectural Graphs*
+- **Ndulue et al. (2026)** — *Learning-Based Hierarchical Scene Graph Matching for Robot Localization Leveraging Prior Maps*  
+- **Shaheer et al. (2023)** — *Graph-based Global Robot Localization Informing Situational Graphs with Architectural Graphs*
 
 ### Core Objectives
 - Benchmark multiple GNN architectures for graph matching
@@ -37,41 +37,41 @@ We evaluate multiple GNN architectures, compare their performance on a preproces
 ## Dataset
 The dataset consists of paired graphs from:
 
-1. A-graphs (BIM): Building Information Models with room polygons and wall segments
+1. **A-graphs (BIM):** *Building Information Models with room polygons and wall segments*
 
-2. S-graphs (Robot): Robot perception data with semantic features
+2. **S-graphs (Robot):** *Robot perception data with semantic features*
 
 ### Dataset Format
 Each sample is a tuple (Data1, Data2, PermutationMatrix):
 
-- Data1: PyG Data object for A-graph (BIM)
+- **Data1:** *PyG Data object for A-graph (BIM)*
 
-- Data2: PyG Data object for S-graph (Robot)
+- **Data2:** *PyG Data object for S-graph (Robot)*
 
-- PermutationMatrix: Ground truth node correspondence (N_A × N_S)
+- **PermutationMatrix:** *Ground truth node correspondence (N_A × N_S)*
 
 ### Node Features
 7-dimensional feature vector per node:
 
-- **Type_Room**: [1, 0] for room nodes
+- **Type_Room:** *[1, 0] for room nodes*
 
-- **Type_WS**: [0, 1] for wall segment nodes
+- **Type_WS:** *[0, 1] for wall segment nodes*
 
-- **Centroid_X**: X coordinate
+- **Centroid_X:** *X coordinate*
 
-- **Centroid_Y**: Y coordinate
+- **Centroid_Y:** *Y coordinate*
 
-- **Normal_X**: Outward-facing normal X
+- **Normal_X:** *Outward-facing normal X*
 
-- **Normal_Y**: Outward-facing normal Y
+- **Normal_Y:** *Outward-facing normal Y*
 
-- **Segment_Length**: Wall segment length (-1 for rooms)
+- **Segment_Length:** *Wall segment length (-1 for rooms)*
 
 ### Edge Features
 The graph contains three distinct edge types:
-- **Room-WS**: Connects room to wall segment
-- **Room-Room**: Connects two rooms
-- **WS-WS**: Connects two wall segments
+- **Room-WS:** *Connects room to wall segment*
+- **Room-Room:** *Connects two rooms*
+- **WS-WS:** *Connects two wall segments*
 
 ## Training
 ```bash
@@ -86,18 +86,18 @@ python evaluate.py --model gatv2 --data_path /msd_data --checkpoint_dir ./checkp
 The repository includes comprehensive explainability features:
 
 ### GNNExplainer Integration
-- Node Importance: Identifies which nodes in the BIM graph are most influential for a prediction
+- **Node Importance:** *Identifies which nodes in the BIM graph are most influential for a prediction*
 
-- Edge Importance: Identifies which graph edges are most important
+- **Edge Importance:** *Identifies which graph edges are most important*
 
-- Feature Importance: Shows which node features contribute to the decision
+- **Feature Importance:** *Shows which node features contribute to the decision*
 
 ### Visualization Types
-- Node Importance Plots: Color-coded nodes showing importance (red = high, blue = low)
+- **Node Importance Plots:** *Color-coded nodes showing importance (red = high, blue = low)*
 
-- Edge Importance Plots: Thick/thin edges indicating importance
+- **Edge Importance Plots:** *Thick/thin edges indicating importance*
 
-- Matching Visualization: Side-by-side graphs with matching lines
+- **Matching Visualization:** *Side-by-side graphs with matching lines*
 
 ```bash
 python scripts/explain_model.py \
@@ -112,13 +112,13 @@ python scripts/explain_model.py \
 ```
 Explanation Options:
 ```bash
- --model: Model architecture to explain
- --data_path: Path to the MSD dataset
- --checkpoint_dir: Directory containing model checkpoints
- --output_dir: Directory for explanation outputs
- --num_samples: Number of samples to analyze
- --epochs: Number of epochs for GNNExplainer
- --explain_wrong: Explain misclassified nodes
- --explain_correct: Explain correctly classified nodes
- --visualize: Generate visualization plots
+   --model: Model architecture to explain
+   --data_path: Path to the MSD dataset
+   --checkpoint_dir: Directory containing model checkpoints
+   --output_dir: Directory to explanation outputs
+   --num_samples: Number of samples to analyze
+   --epochs: Number of epochs in GNNExplainer
+   --explain_wrong: Explain misclassified nodes
+   --explain_correct: Explain correctly classified nodes
+   --visualize: Generate visualization plots
 ```
